@@ -1,2 +1,5 @@
 # Ignore the node modules 
 .src/node_modules/
+
+# Ignore the junk that apple produces
+.DS_STORE
