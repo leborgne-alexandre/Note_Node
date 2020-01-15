@@ -2,18 +2,19 @@
   min-height: 100vh;
 }
 
-input, textarea {
-  -webkit-transition: all 0.30s ease-in-out;
-  -moz-transition: all 0.30s ease-in-out;
-  -ms-transition: all 0.30s ease-in-out;
-  -o-transition: all 0.30s ease-in-out;
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #6c5ce7;
+.connexion-input label {
+  font-size: 20px;
 }
 
-input[type=text], input[type=password]:focus, textarea:focus {
+.connexion-input input[type=text]:focus {
+  -webkit-box-shadow: 0 0 5px #7852d1;
+          box-shadow: 0 0 5px #7852d1;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #7852d1;
+}
+
+.connexion-input input[type=password]:focus {
   -webkit-box-shadow: 0 0 5px #7852d1;
           box-shadow: 0 0 5px #7852d1;
   padding: 3px 0px 3px 3px;
