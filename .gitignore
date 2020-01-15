@@ -1,2 +1,5 @@
 # Ignore the node modules 
 .src/node_modules/
+
+
+.DS_STORE
