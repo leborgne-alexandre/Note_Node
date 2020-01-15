@@ -7,7 +7,7 @@ module.exports = (app) => {
     .post(moduleControleur.create_a_module);
   
     app.route('/modules/:modules_id')
-    .get(moduleControleur.get_a_module)
+    .get(moduleControleur.get_a_module) //Mean score will be displayed here
     .put(moduleControleur.update_a_module)
     .delete(moduleControleur.delete_a_module);
   }

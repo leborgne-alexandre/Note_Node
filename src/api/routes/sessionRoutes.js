@@ -1,14 +1,14 @@
-// src/api/routes/userRoutes.js
+// src/api/routes/sessionRoutes.js
 module.exports = (app) => {
-    const userControleur = require('../controleur/userControleur');
+    const sessionControleur = require('../controleur/sessionControleur');
   
-    app.route('/users/') // req.params.post_id
-    .get(commentControleur.get_all_users)
-    .post(commentControleur.create_an_user);
+    app.route('/sessions/') // req.params.post_id
+    .get(sessionControleur.get_all_sessions)
+    .post(sessionControleur.create_a_session);
   
     app.route('/users/:user_id')
-    .get(commentControleur.get_an_user)
-    .put(commentControleur.update_an_user)
-    .delete(commentControleur.delete_an_user);
+    .get(sessionControleur.get_a_session)
+    .put(sessionControleur.update_a_session)
+    .delete(sessionControleur.delete_a_session);
   }
   
