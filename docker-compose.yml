@@ -17,7 +17,7 @@ services:
     networks:
       - my-network
   mongo:
-    container_name: project_not_node_mongo
+    container_name: project_note_node_mongo
     image: mongo
     ports:
       - "27017:27017"
