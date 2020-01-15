@@ -1,6 +1,6 @@
 # Note_Node
 
-## Hackton IPSSI Project =>(!Work in progress!)<=
+## Note_Node Project =>(!Work in progress!)<=
 
 ## Technology included
 
