@@ -1,7 +1,8 @@
 # Ignore the node modules 
-.src/node_modules/
+./src/node_modules/
 
 # Ignore the junk that apple produces
+
 .DS_STORE
 src/node_modules/.bin/nodemon
 
@@ -88,3 +89,4 @@ src/node_modules/nodemon/LICENSE
 src/node_modules/nodemon/package.json
 
 src/node_modules/nodemon/README.md
+
