@@ -2,9 +2,7 @@
 module.exports = (app) => {
     const userController = require('../controllers/userController');
   
-
-    app.route('/admin/') // req.params.post_id
-    .get(user.userController.sign_in);
+    app.post('/login', userController.user_login);
 
     app.route('/admin/users/') // req.params.post_id
     .get(userController.list_all_users)

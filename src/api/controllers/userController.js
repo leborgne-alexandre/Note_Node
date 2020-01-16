@@ -1,7 +1,9 @@
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const userModel = require('../models/userModels');
 const bcrypt = require('bcrypt');
 const User = mongoose.model('User');
+const config = require('../../config/secrets');
 
 
 // return the new use, encrypte the password a the creation
@@ -98,4 +100,35 @@ exports.delete_a_user = (req,res)=>{
         }
     })
 }
+
+exports.user_login = (req, res) => {
+
+    var {body} = req;
+  
+    User.findOne({email: body.email}, (error, user) => {
+      if(error){
+        res.status(500);
+        console.log(error);
+        res.json({message: "Erreur serveur."});
+      } if(!user){
+        res.status(418);
+        res.json({message: "Impossible de se connecter"});
+      } else {
+        if(user.email === body.email && bcrypt.compareSync(body.password,user.password)){
+          jwt.sign({user}, config.secrets.jwt_key, {expiresIn: '30 days'}, (error, token) => {
+            if(error){
+              res.status(400);
+              res.json({message: "Mot de passe ou email erroné."});
+            }
+            else{
+              res.json({token})
+            }
+          })
+        }else{
+            res.status(418);
+            res.json({message: "Impossible de se connecter"});
+        }
+      }
+    })
+  }
 
