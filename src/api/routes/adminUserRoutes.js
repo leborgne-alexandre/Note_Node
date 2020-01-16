@@ -2,13 +2,17 @@
 module.exports = (app) => {
     const userController = require('../controllers/userController');
   
+
+    app.route('/admin/') // req.params.post_id
+    .get(user.userController.sign_in);
+
     app.route('/admin/users/') // req.params.post_id
-    .get(userController.get_all_users)
-    .post(userController.create_an_user);
+    .get(userController.list_all_users)
+    .post(userController.create_a_user);
   
     app.route('/admin/users/:user_id')
-    .get(userController.get_an_user)
-    .put(userController.update_an_user)
-    .delete(userController.delete_an_user);
+    .get(userController.get_a_user)
+    .put(userController.update_a_user)
+    .delete(userController.delete_a_user);
   }
   

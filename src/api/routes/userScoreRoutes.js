@@ -1,6 +1,6 @@
 // src/api/routes/userRoutes.js
 module.exports = (app) => {
-    const scoreController = require('../controllers/scoreController');
+    const scoreController = require('../controllers/userController');
   
     app.route('/score/:module') // req.params.post_id
     .get(scoreController.get_all_modules)
