@@ -1,39 +1,56 @@
 const mongoose = require('mongoose');
 const userModel = require('../models/userModels');
+const config = require('../../config/secrets');
+const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
 
-exports.isTheCurrentUserAdmin = (user_id) => {
-    return new Promise((resolve, reject) => {
-        try{
-            User.findById(user_id,(error,user)=>{
-                if(error){
+exports.isTheCurrentUserAdmin = (req) => {
+    return new Promise((resolve,reject)=>{
+        const UserPromise = this.getUserFromToken(req);
+        UserPromise.then(user=>{
+            try{
+                console.log("try");
+                if(user.is_admin){
+                    resolve(true);
+                }else{
                     reject(false);
                 }
+            } catch(e){
+                console.log("catche");
+                reject(false);
+            }
+        },error => {
+            reject(false);
+        })
+    
+    })
+}
+
+
+exports.getUserFromToken = (req) => {
+    return new Promise((resolve, reject) => {
+        let token = req.headers['authorization']; // mon token
+        try{
+            if(typeof token !== 'undefined'){
+            jwt.verify(token, config.secrets.jwt_key, (error, authData) => {
+                if(error){
+                // res.sendStatus(403);
+                reject(false)
+                }
                 else{
-                    if(!user){
-                        reject(false);
-                    }else{
-                        if(user.is_admin){
-                            resolve(true);
-                        }else{
-                            reject(false);
-                        }
-                    }
-                } 
+                    resolve(authData.user); 
+                }
             })
-        } catch(e){
-            console.log(e);
+            }
+        }catch{
             reject(false);
         }
+        
     })
 }
 
 exports.asAdminAccess = (req, res, next) => {
-    //let token = req.headers['authorization']; // mon token
-    let token = "";
-    let user_id = req.body.user_id;
-    const isUserAdmin =this.isTheCurrentUserAdmin(user_id);
-    
+    const isUserAdmin =this.isTheCurrentUserAdmin(req);
     isUserAdmin.then(response=>{
         next();
     },error => {
@@ -44,8 +61,8 @@ exports.asAdminAccess = (req, res, next) => {
   }
 
 exports.verify_token = (req, res, next) => {
-    //let token = req.headers['authorization']; // mon token
-    let tocken ="";
+    let token = req.headers['authorization']; // mon token
+    
     if(typeof token !== 'undefined'){
       jwt.verify(token, config.secrets.jwt_key, (error, authData) => {
         if(error){
