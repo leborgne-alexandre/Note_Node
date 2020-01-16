@@ -132,3 +132,16 @@ exports.user_login = (req, res) => {
     })
   }
 
+
+// update a password, return the new json object or a json message in case of error
+exports.update_password = (req,res)=>{
+  User.findByIdAndUpdate(req.params.user_id,req.body,{new : true},(error,user)=>{
+      if(error){
+          res.status(500);
+          res.json(error);
+      }else{
+          res.status(200);
+          res.json(user);
+      }
+  })  
+}
