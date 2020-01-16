@@ -15,7 +15,7 @@ exports.create_a_session = function(req, res) {
         console.log(err);
         res.json({message: "Erreur lors de la création du module"});
       } else {
-        res.status(201s);
+        res.status(201);
         return res.json(session);
       }
     });
