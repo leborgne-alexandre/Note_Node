@@ -15,6 +15,7 @@ exports.create_a_session = function(req, res) {
         console.log(err);
         res.json({message: "Erreur lors de la création du module"});
       } else {
+        res.status(201);
         return res.json(session);
       }
     });
@@ -50,7 +51,7 @@ exports.get_a_session = (req,res)=>{
     })
 }
 
-// update a module, take @session_id parameter, return the new json object or a json message in case of error
+// update a session, take @session_id parameter, return the new json object or a json message in case of error
 exports.update_a_session = (req,res)=>{
     Session.findByIdAndUpdate(req.params.session_id,req.body,{new : true},(error,session)=>{
         if(error){
@@ -63,7 +64,7 @@ exports.update_a_session = (req,res)=>{
     })  
 }
 
-// delete a module, take @session_id parameter and return a json message
+// delete a session, take @session_id parameter and return a json message
 exports.delete_a_session = (req,res)=>{
     let id = req.params.session_id;
     Session.findByIdAndDelete(id,(error,session)=>{
