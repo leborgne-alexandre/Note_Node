@@ -1,12 +1,12 @@
 // src/api/routes/userRoutes.js
 module.exports = (app) => {
-    const scoreControleur = require('../controleur/scoreControleur');
+    const scoreController = require('../controller/scoreController');
   
     app.route('/score/:module') // req.params.post_id
-    .get(scoreControleur.get_all_modules)
-    .get(scoreControleur.get_a_module)
+    .get(scoreController.get_all_modules)
+    .get(scoreController.get_a_module)
 
     app.route('/score/:module?filtre=:session') // req.params.post_id
-    .post(scoresControleur.set_a_score);
+    .post(scoresController.set_a_score);
   }
   

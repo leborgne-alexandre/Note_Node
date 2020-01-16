@@ -1,14 +1,8 @@
 // src/api/routes/moduleRoutes.js
 module.exports = (app) => {
-    const moduleControleur = require('../controleur/moduleControleur');
+    const moduleController = require('../controller/moduleController');
   
-    app.route('/admin/') // req.params.post_id
-    .get(moduleControleur.get_all_modules)
-    .post(moduleControleur.create_a_module);
-  
-    app.route('/modules/:modules_id')
-    .get(moduleControleur.get_a_module) //Mean score will be displayed here
-    .put(moduleControleur.update_a_module)
-    .delete(moduleControleur.delete_a_module);
+    app.route('/admin-index/') // req.params.post_id
+    .get(moduleController.get_options) // Get the buttons for user, module and session
   }
   
