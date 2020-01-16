@@ -19,6 +19,10 @@ let userSchema = new Schema({
     type: String,
     required: "Password required"
   },
+  session: {
+    type: Integer,
+    required: "Year required"
+  },
   is_intervenant: {
     type: Boolean,
   },
