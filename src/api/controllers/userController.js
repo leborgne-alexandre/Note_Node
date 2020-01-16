@@ -4,7 +4,7 @@ const userModel = require('../models/userModels');
 const bcrypt = require('bcrypt');
 const User = mongoose.model('User');
 const config = require('../../config/secrets');
-
+const ARM = require('../middleware/accessRoleManagement');
 
 // return the new use, encrypte the password a the creation
 exports.create_a_user = function(req, res) {
