@@ -57,7 +57,7 @@ exports.list_all_users = (req,res)=>{
 
 // get a use, take @user_id parameter and return if the user exist, the json of the user, or a json error message
 exports.get_a_user = (req,res)=>{
-    User.findById({id : req.params.user_id},(req,user)=>{
+    User.findById(req.params.user_id,(error,user)=>{
         if(error){
             res.status(500);
             console.log(error); 
