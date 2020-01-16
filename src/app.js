@@ -9,7 +9,7 @@ const port = 3000;
 
 app.use(express.static("public"));
 app.use(engine);
-app.set('views', `${__dirname}/views`);
+app.set("views", `${__dirname}/views`);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.resolve(__dirname, "pages/index.html"));
@@ -27,4 +27,8 @@ mongoose.connect("mongodb://mongo/sqynode", mongooseParams);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+const usersRoutes = require("./api/routes/userRoutes");
+usersRoutes(app);
+
 app.listen(port, hostname);
