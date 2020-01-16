@@ -13,7 +13,8 @@ let userSchema = new Schema({
   },
   email: {
     type: String,
-    required: "Email required"
+    required: "Email required",
+    unique: true
   },
   password: {
     type: String,
