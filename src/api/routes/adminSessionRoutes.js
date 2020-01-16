@@ -1,6 +1,6 @@
 // src/api/routes/sessionRoutes.js
 module.exports = (app) => {
-    const sessionController = require('../controller/sessionController');
+    const sessionController = require('../controllers/sessionController');
   
     app.route('admin/sessions/') // req.params.post_id
     .get(sessionController.get_all_sessions)
