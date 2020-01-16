@@ -1,12 +1,15 @@
 // src/api/routes/userRoutes.js
 module.exports = (app) => {
-    const scoreController = require('../controllers/userController');
+    const userController = require('../controllers/userController');
   
-    app.route('/score/:module') // req.params.post_id
-    .get(scoreController.get_all_modules)
-    .get(scoreController.get_a_module)
+    app.route('/user/:id_user/score/:module') 
+    .get(userController.get_all_modules)
+    .get(userController.get_a_module)
 
-    app.route('/score/:module?filtre=:session') // req.params.post_id
-    .post(scoresController.set_a_score);
-  }
+    app.route('/user/:id_user/score/:module?filtre=:session') 
+    .post(userController.set_a_score);
+
+    app.route('/user/:id_user/psswd') 
+    .put(userController.update_password) 
+}
   
