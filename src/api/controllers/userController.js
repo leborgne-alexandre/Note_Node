@@ -7,10 +7,11 @@ const User = mongoose.model('User');
 // return the new use, encrypte the password a the creation
 exports.create_a_user = function(req, res) {
     var newUser = new User(req.body);
-    newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
+    newUser.password = bcrypt.hashSync(req.body.password, 10);
     newUser.save((err, user) => {
       if (err) {
         res.status(500);
+        console.log(err);
         res.json({message: "Erreur lors de la création de l'user"});
       } else {
         user.hash_password = undefined;
@@ -57,7 +58,7 @@ exports.list_all_users = (req,res)=>{
 
 // get a use, take @user_id parameter and return if the user exist, the json of the user, or a json error message
 exports.get_a_user = (req,res)=>{
-    User.findById({id : req.params.user_id},(req,user)=>{
+    User.findById(req.params.user_id,(error,user)=>{
         if(error){
             res.status(500);
             console.log(error); 

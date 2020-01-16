@@ -4,7 +4,7 @@ const {Schema} = mongoose;
 
 let sessionSchema = new Schema({
   year: {
-    type: Integer,
+    type: Number,
     required: "Year required"
   },
   name: {
