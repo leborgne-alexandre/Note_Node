@@ -8,11 +8,11 @@ let moduleSchema = new Schema({
     required: "Module name required"
   },
   id_intervenant: {
-    type: Number,
+    type: String,
     required: "Intervenant id required"
   },
   id_session: {
-    type: Number,
+    type: String,
     required: "Session id required"
   },
   start_date: {
