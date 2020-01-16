@@ -28,7 +28,7 @@ mongoose.connect("mongodb://mongo/sqynode", mongooseParams);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const usersRoutes = require("./api/routes/userRoutes");
+const usersRoutes = require("./api/routes/adminUserRoutes");
 usersRoutes(app);
 
 app.listen(port, hostname);
