@@ -13,7 +13,7 @@ app.set("views", `${__dirname}/views`);
 
 app.get("/", (req, res) => {
   // res.sendFile(path.resolve(__dirname, "pages/index.html"));
-  res.render("index");
+  res.render("admin");
 });
 
 // Options pour enlever les warnings
