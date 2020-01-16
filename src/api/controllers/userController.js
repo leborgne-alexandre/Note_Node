@@ -102,6 +102,7 @@ exports.delete_a_user = (req,res)=>{
 }
 
 exports.user_login = (req, res) => {
+
     var {body} = req;
   
     User.findOne({email: body.email}, (error, user) => {
@@ -109,19 +110,23 @@ exports.user_login = (req, res) => {
         res.status(500);
         console.log(error);
         res.json({message: "Erreur serveur."});
-      }
-      else{
-        if(user.email === body.email && user.password === body.password){
+      } if(!user){
+        res.status(418);
+        res.json({message: "Impossible de se connecter"});
+      } else {
+        if(user.email === body.email && bcrypt.compareSync(body.password,user.password)){
           jwt.sign({user}, config.secrets.jwt_key, {expiresIn: '30 days'}, (error, token) => {
             if(error){
               res.status(400);
-              console.log(error);
               res.json({message: "Mot de passe ou email erroné."});
             }
             else{
               res.json({token})
             }
           })
+        }else{
+            res.status(418);
+            res.json({message: "Impossible de se connecter"});
         }
       }
     })
