@@ -4,11 +4,11 @@ const {Schema} = mongoose;
 
 let scoreSchema = new Schema({
   id_student: {
-    type: Integer,
+    type: Number,
     required: "Student id required"
   },
   id_module: {
-    type: Integer,
+    type: Number,
     required: "Module ir required"
   },
   score: {

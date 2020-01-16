@@ -20,7 +20,7 @@ let userSchema = new Schema({
     required: "Password required"
   },
   session: {
-    type: Integer,
+    type: Number,
     required: "Year required"
   },
   is_intervenant: {
