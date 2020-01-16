@@ -1,7 +1,44 @@
 const mongoose = require('mongoose');
 const userModel = require('../models/userModels');
+const bcrypt = require('bcrypt');
 const User = mongoose.model('User');
 
+
+// return the new use, encrypte the password a the creation
+exports.create_a_user = function(req, res) {
+    var newUser = new User(req.body);
+    newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
+    newUser.save((err, user) => {
+      if (err) {
+        res.status(500);
+        res.json({message: "Erreur lors de la création de l'user"});
+      } else {
+        user.hash_password = undefined;
+        return res.json(user);
+      }
+    });
+}
+
+// Return a token if the email and password correspond to a user in the base
+exports.sign_in = function(req, res) {
+    User.findOne({
+        email: req.body.email
+      }, function(err, user) {
+        if (err) {
+            res.status(500);
+            res.json({message: "Erreur serveur lors de la connexion"})
+        }
+        if (!user) {
+            res.status(418).json({ message: 'Auth failed' });
+        } else if (user) {
+          if (!user.comparePassword(req.body.password)) {
+            res.status(418).json({ message: 'Auth failed' });
+          } else {
+            return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id}, 'nodejs_api')});
+          }
+        }
+      });
+}
 
 // return all the users that can be found or a json message if there is an error 
 exports.list_all_users = (req,res)=>{
