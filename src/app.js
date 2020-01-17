@@ -7,6 +7,7 @@ const app = express();
 const hostname = "0.0.0.0";
 const port = 3000;
 const User = require('./api/models/userModels')
+const Session = require('./api/models/sessionModels')
 
 app.use(express.static("public"));
 app.use(engine);
@@ -20,8 +21,9 @@ app.set("views", `${__dirname}/views`);
 
 app.get('/', async (req, res) => {
   const users = await User.find({})
+  const session = await Session.find({})
   res.render('user-admin', {
-    users
+    users,session
   })
 })
 
