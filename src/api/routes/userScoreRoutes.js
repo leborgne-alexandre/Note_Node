@@ -4,14 +4,14 @@ module.exports = (app) => {
     const scoreController = require('../controllers/scoreController');
     const moduleController = require('../controllers/moduleController');
   
-    app.route('/user/:id_user/score/:module') 
+    app.route('score/:module') 
     .get(userController.get_all_modules)
     .get(userController.get_a_module)
 
-    app.route('/user/:id_user/score/:module?filtre=:session') 
+    app.route('score/:module?filtre=:session') 
     .post(scoreController.set_a_score);
 
-    app.route('/user/:id_user/psswd') 
+    app.route('/psswd') 
     .put(userController.update_password) 
 }
   
