@@ -5,7 +5,7 @@ module.exports = (app) => {
     const moduleController = require('../controllers/moduleController');
     const ARM = require('../middleware/accessRoleManagement');
   
-    app.route('score/:module_id') 
+    app.route('/score/:module_id') 
     .all(ARM.canMakeAVote)
     .get(moduleController.get_a_module)
     .post(scoreController.create_a_score);

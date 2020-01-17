@@ -75,7 +75,7 @@ exports.get_a_module = (req,res)=>{
                     );
                 }
                 mod = mod.toObject()
-                mod.scoreTotal = tot;
+                mod.scoreTotal = tot/number;
                 
                 res.status(200);
                 res.json(mod);
