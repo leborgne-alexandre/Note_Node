@@ -4,13 +4,16 @@ module.exports = (app) => {
     const userController = require('../controllers/userController');
     const moduleController = require('../controllers/moduleController');
 
-    app.route('admin/score/:module') // req.params.post_id
+    app.route('admin/scores/') // req.params.post_id
+    .get(scoreController.list_all_scores);
+
+    app.route('admin/scores/:module') // req.params.post_id
     .get(moduleController.get_a_module);
 
-    app.route('admin/score/:user') // req.params.post_id
-    .get(scoreContruserControlleroller.get_an_user);
+    app.route('admin/scores/:user') // req.params.post_id
+    .get(scoreController.get_an_user);
 
-    app.route('admin/score/:score') // req.params.post_id
+    app.route('admin/scores/:score') // req.params.post_id
     .get(scoreController.get_a_score);
   }
   
