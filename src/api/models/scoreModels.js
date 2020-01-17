@@ -9,7 +9,7 @@ let scoreSchema = new Schema({
   },
   id_module: {
     type: String,
-    required: "Module ir required"
+    required: "Module id required"
   },
   score: {
     type: Number,
