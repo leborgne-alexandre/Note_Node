@@ -104,7 +104,6 @@ exports.delete_a_user = (req,res)=>{
 exports.user_login = (req, res) => {
 
     var {body} = req;
-  
     User.findOne({email: body.email}, (error, user) => {
       if(error){
         res.status(500);
@@ -121,6 +120,7 @@ exports.user_login = (req, res) => {
               res.json({message: "Mot de passe ou email erroné."});
             }
             else{
+              req.session.token = token;
               res.json({token})
             }
           })

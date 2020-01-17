@@ -3,6 +3,7 @@ const { config, engine } = require("express-edge");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const expression = require('express-session');
 const app = express();
 const hostname = "0.0.0.0";
 const port = 3000;
@@ -11,6 +12,7 @@ const Session = require('./api/models/sessionModels')
 
 app.use(express.static("public"));
 app.use(engine);
+app.use(expression({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.set("views", `${__dirname}/views`);
 
 // app.get("/", (req, res) => {
