@@ -6,8 +6,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const hostname = "0.0.0.0";
 const port = 3000;
-const User = require('./api/models/userModels')
-const Session = require('./api/models/sessionModels')
+const User = require("./api/models/userModels");
+const Session = require("./api/models/sessionModels");
 
 app.use(express.static("public"));
 app.use(engine);
@@ -18,14 +18,12 @@ app.set("views", `${__dirname}/views`);
 //   res.render("user-admin");
 // });
 
-
-app.get('/', async (req, res) => {
-  const users = await User.find({})
-  const session = await Session.find({})
-  res.render('user-admin', {
-    users,session
-  })
-})
+app.get("/", async (req, res) => {
+  const users = await User.find({});
+  const sessions = await Session.find({});
+  res.render("user-admin", { sessions, users });
+  
+});
 
 // Options pour enlever les warnings
 const mongooseParams = {
