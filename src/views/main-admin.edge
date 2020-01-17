@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Note Node</title>
+
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <div id="wrapper">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-text" style="display: block;">Note Node</div>
+      </a>
+
+      <hr class="sidebar-divider my-0">
+
+      <div class="sidebar-heading">
+      </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <span>Accueil</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <span>Sessions</span></a>
+      </li>
+
+       <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <span>Membres</span></a>
+      </li>
+
+      <hr class="sidebar-divider">
+
+    </ul>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <div id="content">
+
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-lg-inline text-gray-600 small">User Name</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+   
+        <div class="container-fluid">
+
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-3 text-gray-800">Modules & Sessions</h1>
+
+             <a href="#" class="d-sm-inline-block mb-3 btn btn-sm btn-primary shadow-sm" type="button" 
+             data-toggle="modal" 
+             data-target="#exampleModal" 
+             data-name="Ronald" 
+             data-firstname="MacDoNalds">
+               
+              <i class="fas fa-plus fa-sm text-white-50" style="display: inline-block !important;"></i> Ajouter un module </a>
+          </div> 
+
+      
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ajouter un membre</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+
+                <!-- MAGIC FORM -->
+
+
+                <div class="modal-body">
+                  <form>
+                      <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="recipient-name" class="col-form-label">Nom :</label>
+                      <input type="text" class="form-control" id="recipient-name">
+                    </div>
+
+                    <div class="form-group bind-name col-md-6">
+                      <label for="message-text" class="col-form-label">Prénom :</label>
+                      <input class="form-control" id="message-text"></input>
+                    </div>
+
+                  </div>
+
+                    <div class="form-row">
+                    <div class="form-group bind-name col-md-6">
+                      <label for="message-text" class="col-form-label">Email :</label>
+                      <input class="form-control" id="message-text"></input>
+                    </div>
+
+                    <div class="form-group bind-name col-md-6">
+                      <label for="message-text" class="col-form-label">Mot de passe :</label>
+                      <input type="password" class="form-control" id="message-text"></input>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group mb-2">
+                    <label for="message-text" class="col-form-label">Session :</label>
+                    <select class="custom-select">
+                      <option selected>Selectionner la session</option>
+                      <option value="1">2020</option>
+                      <option value="2">2021</option>
+                      <option value="3">2022</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-2">
+                    <label for="message-text" class="col-form-label">Statut :</label>
+                    <select class="custom-select">
+                      <option selected>Selectionner le statut</option>
+                      <option value="1">Etudiant</option>
+                      <option value="2">Intervenant</option>
+                    </select>
+                  </div>
+
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Ajouter</button>
+                  </div>
+                  </form>
+                </div>
+
+
+                <!-- MAGIC FORM -->
+               
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+
+            
+            <div class="col-xl-3 col-md-6 mb-4" type="button" 
+            data-toggle="modal" 
+            data-target="#exampleModal" 
+            data-name="Ronald" 
+            data-firstname="two">
+
+
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Insert</div>
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">Insert</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Insert</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+      <div class="col-xl-3 col-md-6 mb-4" type="button" 
+            data-toggle="modal" 
+            data-target="#exampleModal" 
+            data-name="Ronald" 
+            data-firstname="one">
+
+
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Insert</div>
+                      <div class="h4 mb-0 font-weight-bold text-gray-800">Insert</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Insert</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+  
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <script src="js/sb-admin-2.min.js"></script>
+      <script src="js/form.js"></script>
+
+
+</body>
+
+</html>
