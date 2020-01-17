@@ -10,6 +10,7 @@ module.exports = (app) => {
     .post(userController.create_a_user);
   
     app.route('/admin/users/:user_id')
+    .all(ARM.asAdminAccess)
     .get(userController.get_a_user)
     .put(userController.update_a_user)
     .delete(userController.delete_a_user);

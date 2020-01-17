@@ -7,8 +7,11 @@ module.exports = (app) => {
   
     app.route('/score/:module_id') 
     .all(ARM.canMakeAVote)
-    .get(moduleController.get_a_module)
     .post(scoreController.create_a_score);
+
+    app.route('/score/:module_id') 
+    .all(ARM.verify_token)
+    .get(moduleController.get_a_module);
 
     app.route('/psswd') 
     .put(userController.update_password);
