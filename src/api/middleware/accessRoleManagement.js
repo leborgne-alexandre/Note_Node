@@ -38,6 +38,7 @@ exports.getUserFromToken = (req) => {
                 reject(false)
                 }
                 else{
+                    console.log("yEEE");
                     resolve(authData.user); 
                 }
             })
@@ -49,10 +50,10 @@ exports.getUserFromToken = (req) => {
     })
 }
 
-exports.canMakeAVote = (req,res) =>{
-    const isUserAdmin =this.isTheCurrentUserAdmin(req);
-    isUserAdmin.then(response=>{
-        scoreModel.findOne({id_student: res.body.user_id,id_module:res.body.module},function(err,score){
+exports.canMakeAVote = (req,res,next) =>{
+    const currentUser =this.getUserFromToken(req);
+    currentUser.then(response=>{
+        scoreModel.findOne({id_student: response._id,id_module:req.params.module_id},function(err,score){
             if(err){
                 res.status(500);
                 res.json({message: "erreur interne du serveur"});
@@ -61,18 +62,22 @@ exports.canMakeAVote = (req,res) =>{
                 res.status(403);
                 res.json({message: "La personne a deja vote"});
             }else{
-                moduleModel.findById(res.body.module_id,(err,module)=>{
+                moduleModel.findById(req.params.module_id,(err,module)=>{
                     if(err){
                         res.status(500);
                         res.json({message: "erreur interne du serveur"});
                     }
                     if(module){
-                        if(module.start_date<Date.now()<module.finnish_date){
+                        if(module.start_date<Date.now()&& Date.now()<module.finish_date){
+                            console.log("il  peut voter");
                             next();
                         }else{
                             res.status(403);
                             res.json({message: "La periode de vote est fermée"});
                         }
+                    }else{
+                        res.status(404);
+                        res.json({message : "module not found"});
                     }
                 })
             }
