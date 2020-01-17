@@ -5,7 +5,7 @@ module.exports = (app) => {
     app.post('/login', userController.user_login);
 
     app.route('/admin/users/') // req.params.post_id
-    .all(ARM.asAdminAccess)
+    //.all(ARM.asAdminAccess)
     .get(userController.list_all_users)
     .post(userController.create_a_user);
   
