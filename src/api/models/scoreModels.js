@@ -3,9 +3,9 @@ const {Schema} = mongoose;
 // const Schema = mongoose.Schema;
 
 let scoreSchema = new Schema({
-  id_student: {
+  id_intervenant: {
     type: String,
-    required: "Student id required"
+    required: "Intervenant id required"
   },
   id_module: {
     type: String,
