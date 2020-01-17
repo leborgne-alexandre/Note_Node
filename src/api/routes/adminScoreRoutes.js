@@ -11,7 +11,7 @@ module.exports = (app) => {
     .get(moduleController.get_a_module);
 
     app.route('admin/scores/:user') // req.params.post_id
-    .get(scoreController.get_an_user);
+    .get(userController.get_an_user);
 
     app.route('admin/scores/:score') // req.params.post_id
     .get(scoreController.get_a_score);
