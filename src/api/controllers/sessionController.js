@@ -13,7 +13,7 @@ exports.create_a_session = function(req, res) {
       if (err) {
         res.status(500);
         console.log(err);
-        res.json({message: "Erreur lors de la création du module"});
+        res.json({message: "Erreur lors de la création de la session"});
       } else {
         res.status(201);
         return res.json(session);
