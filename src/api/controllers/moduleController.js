@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const moduleModel = require('../models/moduleModels');
+const scoreModel = require('../models/scoreModels');
 const bcrypt = require('bcrypt');
 const Module = mongoose.model('Module');
+const Score = mongoose.model('Score');
 const config = require('../../config/secrets');
 
 
@@ -21,6 +23,19 @@ exports.create_a_module = function(req, res) {
     });
 }
 
+exports.get_all_score = (req,res)=>{
+    Score.find({id_module: req.params.modules_id},(error,scores)=>{
+        if(error){
+            res.status(500);
+            console.log(error); 
+            res.json({message: "Erreur serveur"});
+        }
+        else{
+            res.status(200);  
+            res.json(scores);
+        }
+    });
+}
 // return all the modules that can be found or a json message if there is an error 
 exports.get_all_modules = (req,res)=>{
     Module.find({},(error,mod)=>{
@@ -39,14 +54,33 @@ exports.get_all_modules = (req,res)=>{
 // get a use, take @modules_id parameter and return if the module exist, the json of the module, or a json error message
 exports.get_a_module = (req,res)=>{
     Module.findById(req.params.modules_id,(error,mod)=>{
+        var tot = 0;
+        var number = 0;
         if(error){
             res.status(500);
             console.log(error); 
             res.json({message: "Erreur serveur"});
         }
         else{
-            res.status(200);
-            res.json(mod);
+            Score.find({id_module: mod._id},(error,scores)=>{
+                if(error){
+                    
+                }
+                else{
+                    scores.forEach(
+                        function(score){
+                            tot += score.score;
+                            number++;
+                        }
+                    );
+                }
+                mod = mod.toObject()
+                mod.scoreTotal = tot;
+                
+                res.status(200);
+                res.json(mod);
+            });
+            
         } 
     })
 }

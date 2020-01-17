@@ -31,4 +31,12 @@ app.use(bodyParser.json());
 const usersRoutes = require("./api/routes/adminUserRoutes");
 usersRoutes(app);
 
+const adminModulesRoutes = require("./api/routes/adminModulesRoutes");
+adminModulesRoutes(app);
+const userScoreRoutes = require("./api/routes/userScoreRoutes");
+userScoreRoutes(app);
+
+const adminSessionRoutes = require("./api/routes/adminSessionRoutes");
+adminSessionRoutes(app);
+
 app.listen(port, hostname);
