@@ -5,7 +5,7 @@ module.exports = (app) => {
     const moduleController = require('../controllers/moduleController');
   
     app.route('score/:module') 
-    .get(userController.get_all_modules);
+    .get(moduleController.get_a_module);
 
     app.route('score/:module?filtre=:session') 
     .post(scoreController.set_a_score);
