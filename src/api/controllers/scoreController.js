@@ -22,7 +22,7 @@ exports.set_a_score = function(req, res) {
 
 // return all the scores that can be found or a json message if there is an error 
 exports.list_all_scores = (req,res)=>{
-    User.find({},(error,score)=>{
+    Score.find({},(error,score)=>{
         if(error){
             res.status(500);
             console.log(error); 
