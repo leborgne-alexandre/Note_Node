@@ -20,7 +20,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
           <span>Accueil</span></a>
       </li>
 
@@ -28,7 +28,7 @@
 
        <!-- Nav Item - Tables -->
        <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
           <span>Membres</span></a>
       </li>
 
@@ -129,10 +129,9 @@
                   <div class="form-group mb-2">
                     <label for="message-text" class="col-form-label">Session :</label>
                     <select class="custom-select">
-                      <option selected>Selectionner la session</option>
-                      <option value="1">2020</option>
-                      <option value="2">2021</option>
-                      <option value="3">2022</option>
+                      @each(session in sessions)
+                    <option value="{{session.year}}">{{session.year}}</option>
+                      @endeach
                     </select>
                   </div>
 
@@ -212,9 +211,12 @@
                     <label for="message-text" class="col-form-label">Session :</label>
                     <select class="custom-select">
                       <option selected>Selectionner la session</option>
-                      <option value="1">2020</option>
-                      <option value="2">2021</option>
-                      <option value="3">2022</option>
+                      
+                      @each(session in sessions) 
+
+                      <option>{{session.year}}</option>
+
+                      @endeach
                     </select>
                   </div>
 
@@ -245,7 +247,7 @@
 
     
 
-        <h1 class="h3 mb-4 text-gray-800">Liste des membres</h1>
+        <h1 class="h3 mb-4 text-gray-800">Liste des Membres </h1>
 
 
           <div class="card shadow mb-4">
