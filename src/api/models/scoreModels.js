@@ -14,6 +14,9 @@ let scoreSchema = new Schema({
   score: {
     type: Number,
   },
+  scoreTotal:{
+    type: Number,
+  },
   message: {
     type: String,
   },
