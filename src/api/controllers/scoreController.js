@@ -7,13 +7,13 @@ const config = require('../../config/secrets');
 const ARM = require('../middleware/accessRoleManagement');
 
 // return the new use, encrypte the password a the creation
-exports.create_a_score = function(req, res) {
+exports.set_a_score = function(req, res) {
     var newScore = new Score(req.body);
     newScore.save((err, score) => {
       if (err) {
         res.status(500);
         console.log(err);
-        res.json({message: "Erreur lors de la création du score"});
+        res.json({message: "Erreur lors de la création de la note"});
       } else {
         return res.json(score);
       }
@@ -47,33 +47,5 @@ exports.get_a_score = (req,res)=>{
             res.status(200);
             res.json(score);
         } 
-    })
-}
-
-// update a score, take @score_id parameter, return the new json object or a json message in case of error
-exports.update_a_score = (req,res)=>{
-    Score.findByIdAndUpdate(req.params.score_id,req.body,{new : true},(error,score)=>{
-        if(error){
-            res.status(500);
-            res.json(error);
-        }else{
-            res.status(200);
-            res.json(score);
-        }
-    })  
-}
-
-// delete a user, take @user_id parameter and return a json message
-exports.delete_a_score = (req,res)=>{
-    let id = req.params.user_id;
-    Score.findByIdAndDelete(id,(error,score)=>{
-        if(error){
-            res.status(500);
-            console.log("error");
-            res.json({message : "Erreur serveur"});
-        }else{
-            res.status(200);
-            res.json({message :"Score deleted"});
-        }
     })
 }
