@@ -2,7 +2,7 @@
 module.exports = (app) => {
     const sessionController = require('../controllers/sessionController');
   
-    app.route('/admin/sessions/') // req.params.post_id
+    app.route('/admin/sessions/') // req.params.session_Id
     .get(sessionController.get_all_sessions)
     .post(sessionController.create_a_session);
   

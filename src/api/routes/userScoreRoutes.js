@@ -1,15 +1,16 @@
 // src/api/routes/userRoutes.js
 module.exports = (app) => {
     const userController = require('../controllers/userController');
+    const scoreController = require('../controllers/scoreController');
+    const moduleController = require('../controllers/moduleController');
+    const ARM = require('../middleware/accessRoleManagement');
   
-    app.route('/user/:id_user/score/:module') 
-    .get(userController.get_all_modules)
-    .get(userController.get_a_module)
+    app.route('/score/:module_id') 
+    .all(ARM.canMakeAVote)
+    .get(moduleController.get_a_module)
+    .post(scoreController.create_a_score);
 
-    app.route('/user/:id_user/score/:module?filtre=:session') 
-    .post(userController.set_a_score);
-
-    app.route('/user/:id_user/psswd') 
-    .put(userController.update_password) 
+    app.route('/psswd') 
+    .put(userController.update_password);
 }
   

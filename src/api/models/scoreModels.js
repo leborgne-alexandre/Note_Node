@@ -5,13 +5,16 @@ const {Schema} = mongoose;
 let scoreSchema = new Schema({
   id_student: {
     type: String,
-    required: "Student id required"
+    required: "Intervenant id required"
   },
   id_module: {
     type: String,
-    required: "Module ir required"
+    required: "Module id required"
   },
   score: {
+    type: Number,
+  },
+  scoreTotal:{
     type: Number,
   },
   message: {
