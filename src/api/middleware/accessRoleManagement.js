@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const userModel = require('../models/userModels');
+const scoreModel = require('../models/scoreModels');
+const moduleModel = require('../models/moduleModels');
 const config = require('../../config/secrets');
 const jwt = require('jsonwebtoken');
 const User = mongoose.model('User');
@@ -45,6 +47,41 @@ exports.getUserFromToken = (req) => {
         }
         
     })
+}
+
+exports.canMakeAVote = (req,res) =>{
+    const isUserAdmin =this.isTheCurrentUserAdmin(req);
+    isUserAdmin.then(response=>{
+        scoreModel.findOne({id_student: res.body.user_id,id_module:res.body.module},function(err,score){
+            if(err){
+                res.status(500);
+                res.json({message: "erreur interne du serveur"});
+            }
+            if(score){
+                res.status(403);
+                res.json({message: "La personne a deja vote"});
+            }else{
+                moduleModel.findById(res.body.module_id,(err,module)=>{
+                    if(err){
+                        res.status(500);
+                        res.json({message: "erreur interne du serveur"});
+                    }
+                    if(module){
+                        if(module.start_date<Date.now()<module.finnish_date){
+                            next();
+                        }else{
+                            res.status(403);
+                            res.json({message: "La periode de vote est fermée"});
+                        }
+                    }
+                })
+            }
+        })
+    },error => {
+        res.status(403);
+        res.json("utilisteur non connecte");
+    })
+    
 }
 
 exports.asAdminAccess = (req, res, next) => {
