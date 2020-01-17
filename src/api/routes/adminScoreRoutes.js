@@ -5,11 +5,12 @@ module.exports = (app) => {
     const moduleController = require('../controllers/moduleController');
 
     app.route('admin/score/:module') // req.params.post_id
-    .get(moduleController.get_all_modules)
-    .get(moduleController.get_a_module)
-    .get(userController.get_all_users)
-    .get(scoreContruserControlleroller.get_an_user)
-    .get(scoreController.list_all_scores);
+    .get(moduleController.get_a_module);
+
+    app.route('admin/score/:user') // req.params.post_id
+    .get(scoreContruserControlleroller.get_an_user);
+
+    app.route('admin/score/:score') // req.params.post_id
     .get(scoreController.get_a_score);
   }
   
