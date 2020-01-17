@@ -9,14 +9,12 @@ exports.isTheCurrentUserAdmin = (req) => {
         const UserPromise = this.getUserFromToken(req);
         UserPromise.then(user=>{
             try{
-                console.log("try");
                 if(user.is_admin){
                     resolve(true);
                 }else{
                     reject(false);
                 }
             } catch(e){
-                console.log("catche");
                 reject(false);
             }
         },error => {
@@ -59,6 +57,7 @@ exports.asAdminAccess = (req, res, next) => {
         console.log("access interdit");
     })
   }
+
 
 exports.verify_token = (req, res, next) => {
     let token = req.headers['authorization']; // mon token
