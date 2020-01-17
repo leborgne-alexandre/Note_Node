@@ -3,6 +3,7 @@ const { config, engine } = require("express-edge");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const expression = require('express-session');
 const app = express();
 const hostname = "0.0.0.0";
 const port = 3000;
@@ -11,6 +12,7 @@ const Session = require("./api/models/sessionModels");
 
 app.use(express.static("public"));
 app.use(engine);
+app.use(expression({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 app.set("views", `${__dirname}/views`);
 
 // app.get("/", (req, res) => {
@@ -18,12 +20,21 @@ app.set("views", `${__dirname}/views`);
 //   res.render("user-admin");
 // });
 
-app.get("/", async (req, res) => {
+
+app.get("/userinview", async (req, res) => {
   const users = await User.find({});
   const sessions = await Session.find({});
   res.render("user-admin", { sessions, users });
   
 });
+
+
+app.get('/', async (req, res) => {
+  const users = await User.find({})
+  const session = await Session.find({})
+  res.render('index')
+})
+
 
 // Options pour enlever les warnings
 const mongooseParams = {

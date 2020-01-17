@@ -29,6 +29,11 @@ exports.isTheCurrentUserAdmin = (req) => {
 
 exports.getUserFromToken = (req) => {
     return new Promise((resolve, reject) => {
+        
+        let sess = req.session;
+        if(req.session.token){
+            req.headers["authorization"] = req.session.token;
+        }
         let token = req.headers['authorization']; // mon token
         try{
             if(typeof token !== 'undefined'){
@@ -102,6 +107,10 @@ exports.asAdminAccess = (req, res, next) => {
 
 
 exports.verify_token = (req, res, next) => {
+    let sess = req.session;
+        if(req.session.token){
+            req.headers["authorization"] = req.session.token;
+        }
     let token = req.headers['authorization']; // mon token
     
     if(typeof token !== 'undefined'){

@@ -8,12 +8,12 @@
             id="login-block">
             <div class="m-auto w-lg-75 w-xl-50">
                 <h1 class="font-weight-bold mb-5">Connecte toi et vote !</h1>
-                <form class="connexion-input">
+                <form class="connexion-input" method="POST" action="/login" >
                     <div class="form-group ">
-                        <label class="text-secondary">Email</label>
-                        <input class="form-control" type="text"></div>
+                        <label class="text-secondary ">Email</label>
+                        <input class="form-control" name="email" type="text"></div>
                     <div class="form-group"><label class="text-secondary">Mot de passe</label><input
-                            class="form-control" type="password" required=""></div><button
+                            class="form-control" type="password" required="" name="password"></div><button
                         class="btn mt-2 button-connexion" type="submit">Connexion</button>
                 </form>
             </div>
