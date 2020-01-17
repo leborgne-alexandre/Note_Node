@@ -24,9 +24,7 @@ app.set("views", `${__dirname}/views`);
 app.get('/', async (req, res) => {
   const users = await User.find({})
   const session = await Session.find({})
-  res.render('user-admin', {
-    users,session
-  })
+  res.render('index')
 })
 
 // Options pour enlever les warnings
